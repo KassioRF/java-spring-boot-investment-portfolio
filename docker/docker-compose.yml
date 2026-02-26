@@ -1,0 +1,59 @@
+services:
+
+  # -------------
+  # Users Service
+  # -------------
+  investments-service:
+    build:
+      context: ../investments
+      dockerfile: Dockerfile.dev
+    container_name: investments-service
+    volumes:
+      - ../investments:/app
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_INVESTMENTS: ${DB_INVESTMENTS}
+      DB_INVESTMENTS_OWNER: ${DB_INVESTMENTS_OWNER}
+      DB_INVESTMENTS_PASSWORD: ${DB_INVESTMENTS_PASSWORD}
+    ports:
+    - "3000:80"  
+    networks:
+      - backend
+    depends_on:
+      pg-dbms:
+        condition: service_healthy
+
+  # -------------
+  # DBMS
+  # -------------
+  pg-dbms:
+    image: postgres:17.6-alpine3.22
+    container_name: pg-dbms
+    restart: unless-stopped
+    environment:
+      DB_PORT: ${DB_PORT}
+      # Admin User
+      POSTGRES_USER: ${DB_ADMIN_USER}
+      POSTGRES_PASSWORD: ${DB_ADMIN_PASSWORD}
+      # App INVESTMENTS DB      
+      DB_INVESTMENTS: ${DB_INVESTMENTS}
+      DB_INVESTMENTS_OWNER: ${DB_INVESTMENTS_OWNER}
+      DB_INVESTMENTS_PASSWORD: ${DB_INVESTMENTS_PASSWORD}
+    ports:
+      - "9876:${DB_PORT}"
+    networks:
+      - backend    
+    volumes:
+      - ./volumes/pg_data:/var/lib/postgresql/data
+      # entrypoints
+      - ./entrypoints:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_ADMIN_USER}"]
+      interval: 5s
+      timeout: 3s
+      start_period: 3s
+      retries: 10
+
+networks:
+  backend:
