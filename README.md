@@ -1,4 +1,4 @@
-# Atividade Prática 03: API de Gerenciamento de Carteiro de Investimentos
+# Atividade Prática 03: API de Gerenciamento de Carteira de Investimentos
 
 
 Esta repositório implementa o serviço ``investments`` que é uma API que centraliza a visualização e o gerenciamento de diferentes tipos de ativos.
