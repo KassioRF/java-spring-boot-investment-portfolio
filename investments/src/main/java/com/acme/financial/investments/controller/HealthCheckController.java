@@ -1,4 +1,4 @@
-package com.acme.finalcial.investments.controller;
+package com.acme.financial.investments.controller;
 
 import java.util.Map;
 

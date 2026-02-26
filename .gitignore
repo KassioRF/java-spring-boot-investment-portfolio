@@ -1,0 +1,6 @@
+
+.env*
+!.env.example
+
+docker/volumes/**
+!docker/volumes/.gitkeep
