@@ -59,7 +59,7 @@ public class InvestmentController {
     }
 
     @DeleteMapping("id/{id}")
-    public ResponseEntity<Void> delete(@RequestBody UUID id) {
+    public ResponseEntity<Void> delete(@PathVariable UUID id) {
         deleteInvestmentUseCase.execute(id);
         return ResponseEntity.ok().build();
     }
