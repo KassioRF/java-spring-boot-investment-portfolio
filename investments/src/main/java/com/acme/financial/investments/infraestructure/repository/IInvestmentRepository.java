@@ -13,5 +13,5 @@ public interface IInvestmentRepository extends JpaRepository<InvestmentEntity, U
 
     Optional<InvestmentEntity> findById(UUID id);
 
-    List<InvestmentEntity> findType(EnumInvestmentType type);
+    List<InvestmentEntity> findByType(EnumInvestmentType type);
 }
