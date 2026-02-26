@@ -1,0 +1,57 @@
+@urlServer = http://localhost:3000
+
+
+### POST Cadastrar novo ativo na carteira
+POST {{urlServer}}/investments
+Content-Type: application/json
+
+{
+  "type": "ACAO",
+  "symbol": "BBAS3",
+  "quantity": 333,
+  "purchasePrice": 18.55,
+  "purchaseDate": "2025-07-31"
+}
+
+### POST Cadastrar novo ativo na carteira
+POST {{urlServer}}/investments
+Content-Type: application/json
+
+{
+  "type": "CRIPTO",
+  "symbol": "BTC",
+  "quantity": 0.02,
+  "purchasePrice": 90.94,
+  "purchaseDate": "2025-07-31"
+}
+
+
+### GET Listar todos os ativos da carteira
+GET {{urlServer}}/investments
+
+
+### GET Filtrar ativos por tipo
+GET {{urlServer}}/investments?type=CRIPTO
+
+### GET Filtrar ativos por tipo
+GET {{urlServer}}/investments?type=ACAO
+
+### PUT Atualizar um ativo da carteira
+PUT {{urlServer}}/investments/id/4b22c3ca-2bd4-4388-a986-7bf167e0bdfc
+Content-Type: application/json
+
+{
+  "type": "CRIPTO",
+  "symbol": "BTC",
+  "quantity": 0.0333,
+  "purchasePrice": 33.33,
+  "purchaseDate": "2025-07-20"
+}
+
+
+### DELETE Remover um ativo da carteira
+DELETE {{urlServer}}/investments/id/4b22c3ca-2bd4-4388-a986-7bf167e0bdfc
+
+
+### GET Resumo da carteira
+GET {{urlServer}}/investments/summary
