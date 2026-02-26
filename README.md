@@ -41,10 +41,7 @@ Exemplos de uso estão disponíveis no arquivo [./rest/routes.rest](./rest/route
 4. **Converter**  
    - Centraliza a conversão entre Entities e DTOs.  
 
-5. **Seed**  
-   - Popula a base de dados para testes ou desenvolvimento.  
-
-6. **Config & Exception**  
+5. **Config & Exception**  
    - Configurações gerais (ex: GlobalExceptionHandler, etc).  
 
 
